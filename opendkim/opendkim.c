@@ -4608,7 +4608,7 @@ dkimf_checkfsnode(const char *path, uid_t myuid, char *myname, ino_t *ino,
 					{
 						snprintf(err, errlen,
 						         "%s is in group %u which has multiple users (e.g., \"%s\")",
-						         myname, s.st_gid,
+						         path, s.st_gid,
 						         pw->pw_name);
 					}
 
@@ -4634,7 +4634,7 @@ dkimf_checkfsnode(const char *path, uid_t myuid, char *myname, ino_t *ino,
 					{
 						snprintf(err, errlen,
 						         "%s is in group %u which has multiple users (e.g., \"%s\")",
-						         myname, s.st_gid,
+						         path, s.st_gid,
 						         gr->gr_mem[c]);
 					}
 
