@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build-test:
+    runs-on: [self-hosted, freebsd]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bootstrap build system
+        run: autoreconf -fvi
+
+      - name: Configure
+        run: |
+          ./configure --enable-lua \
+            CPPFLAGS='-I/usr/local/include/lua54' \
+            LUA_LIBS='-llua-5.4'
+
+      - name: Build
+        run: gmake -j$(sysctl -n hw.ncpu)
+
+      - name: Test
+        run: gmake check
