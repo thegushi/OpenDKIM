@@ -17,9 +17,6 @@ jobs:
       - name: Configure
         run: |
           ./configure --enable-lua \
-            CPPFLAGS='-I/usr/local/include/lua54' \
-            LUA_LIBS='-llua-5.4' \
-            LDFLAGS='-L/usr/local/lib' \
             CFLAGS='-g -O2 -Wno-pointer-sign' \
             --with-test-socket=unix:/tmp/opendkim-test.sock
 
