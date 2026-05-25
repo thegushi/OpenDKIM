@@ -19,7 +19,8 @@ jobs:
           ./configure --enable-lua \
             CPPFLAGS='-I/usr/local/include/lua54' \
             LUA_LIBS='-llua-5.4' \
-            CFLAGS='-g -O2 -Wno-pointer-sign'
+            CFLAGS='-g -O2 -Wno-pointer-sign' \
+            --with-test-socket=unix:/tmp/opendkim-test.sock
 
       - name: Build
         run: gmake -j$(sysctl -n hw.ncpu)
